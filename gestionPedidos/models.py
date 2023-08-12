@@ -7,9 +7,12 @@ from django.db import models
 class Clientes(models.Model):
     #Campos y tipos de datos
     nombre = models.CharField(max_length=30)
-    direccion = models.CharField(max_length=50)
-    email = models.EmailField()
+    direccion = models.CharField(max_length=50, verbose_name = "La dirección")
+    email = models.EmailField(blank = True, null = True)
     tfno = models.CharField(max_length = 15)
+
+    def __str__(self):
+        return 'Nombre: %s - Direccion: %s - Email: %s - Telefono: %s' %(self.nombre, self.direccion , self.email, self.tfno)
 
 #Tabla artículos
 class Articulos(models.Model):
@@ -18,10 +21,13 @@ class Articulos(models.Model):
     precio = models.IntegerField()
 
     def __str__(self):
-        return 'El nombre es %s la sección es %s y el precio es %s' %(self.nombre, self.seccion, self.precio)
+        return 'Nombre: %s - Sección: %s - Precio: %s' %(self.nombre, self.seccion, self.precio)
 
 #Tabla pedidos
 class Pedidos(models.Model):
     numero = models.IntegerField()
     fecha = models.DateField()
     entregado = models.BooleanField()
+
+    def __str__(self):
+        return 'Numero: %s - Fecha: %s - Entregado: %s' %(self.numero, self.fecha, self.entregado)
